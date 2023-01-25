@@ -1,0 +1,84 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-6">
+      <img src="http://localhost:3000/{{product.productImage}}" class="img-fluid"/>
+    </div>
+
+    <div class="col-sm-6">
+      <h3 class="text-center">
+        {{product.productName|titlecase}}
+      </h3>
+      <table class="table">
+          <tr>
+              <th >Type</th>
+              <td>{{product.productType}}</td>
+          </tr>
+          <tr>
+              <th>Orignal Price</th>
+              <td>{{product.productPrice|currency:"INR"}}</td>
+          </tr>
+          <tr>
+            <th>Discounted Price</th>
+            <td>{{product.productPrice|discount:discountrate|currency:"INR"}}</td>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <td>{{product.productDesc}}</td>
+          </tr>
+          <tr>
+            <th>Rating</th>
+            <td style="font-size:16px;">
+              <app-star [rating]="product.rating"></app-star>
+            </td>
+          </tr>
+      </table>
+      <div class="row d-flex justify-content-center">
+        <div class="col-sm-4">
+          <input type="submit" class="btn btn-warning" (click)="addToCart()" value="Add To Cart">
+        </div>
+        <div class="col-sm-4">
+          <input type="submit" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#review" value="Write Review">
+        </div>
+        <div class="col-sm-4"></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+	<!--Review Modal -->
+<div class="modal fade" id="review" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Write your review here</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <form (ngSubmit)="onSubmit()" [formGroup]="reviewform">
+              <div class="mb-3">
+                <label for="review">Review</label>
+                  <textarea class="form-control" type="textarea" id="review" formControlName="review" minlength="20"> </textarea>
+                <div class="alert alert-danger" *ngIf="review.invalid && (review.touched || review.dirty)">
+                  <span *ngIf="review.errors?.['required']">
+                      Please Enter Review
+                  </span>
+                  <span *ngIf="review.errors?.['minlength']" >
+                      Please Enter atleast 20 characters
+                  </span>
+                </div>
+              </div>
+              <input class="btn btn-outline-success" type="submit" value="Save" [disabled]="reviewform.invalid">
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

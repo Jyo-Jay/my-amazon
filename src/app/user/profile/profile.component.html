@@ -1,0 +1,102 @@
+<main class="container">
+<div class="d-flex justify-content-center" >
+  <div class="card mt-5" style="width: 30rem; margin-bottom:250px; ">
+    <div class="card-body">
+      <h5 class="card-title">Profile</h5>
+      <table class="table">
+        <tr>
+          <th>Name</th>
+          <td>{{user$.name.first}}&nbsp;{{user$.name.last}}</td>
+        </tr>
+        <tr>
+          <th>Address</th>
+          <td>{{user$.address}}</td>
+        </tr>
+        <tr>
+          <th>Email Address</th>
+          <td>{{user$.email}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+</main>
+
+
+
+
+
+
+<!-- <div class="container divStyle">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <form (ngSubmit)="onSubmit()" [formGroup]="profileform" >
+        <h4>Profile</h4><br>
+        <div class="mb-3">
+          <label for="firstName" class="form-label">First Name</label>
+          <input class="form-control" type="label" id="firstName" formControlName="firstName">
+          <div class="alert alert-danger"
+            *ngIf="firstName.invalid && (firstName.touched || firstName.dirty)">
+                <span *ngIf="firstName.errors?.['required']">
+                    Please Enter First  Name
+                </span>
+                <span *ngIf="firstName.errors?.['pattern']">
+                    Please Enter Valid First Name
+                </span>
+            </div>
+      </div>
+      <div class="mb-3">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input class="form-control" type="text" id="lastName" formControlName="lastName">
+        <div class="alert alert-danger"
+          *ngIf="lastName.invalid && (lastName.touched || lastName.dirty)">
+              <span *ngIf="lastName.errors?.['required']">
+                  Please Enter Last Name
+              </span>
+              <span *ngIf="lastName.errors?.['pattern']">
+                  Please Enter Valid Last Name
+              </span>
+        </div>
+      </div>
+
+        <div class="mb-3">
+          <label for="address" class="form-label">Address</label>
+          <textarea class="form-control" type="text-area" id="address" formControlName="address"></textarea>
+          <div class="alert alert-danger"
+            *ngIf="address.invalid && (address.touched || address.dirty)">
+                <span *ngIf="address.errors?.['required']">
+                    Please Enter address
+                </span>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input  class="form-control" type="email" id="email" formControlName="email">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          <div class="alert alert-danger"
+          *ngIf="email.invalid && (email.touched || email.dirty)">
+              <span *ngIf="email.errors?.['required']">
+                  Please Enter the Email address
+              </span>
+          </div>
+        </div>
+        <div formArrayName="mobile">
+            <div class="mb-3" *ngFor="let contorl of mobile.controls;let i=index">
+                <label for="mobile">Mobile {{i+1}}</label>
+                <input type="number" class="form-control"
+                [formControlName]="i">
+            </div>
+            <button class="btn btn-outline-warning m-2"
+            (click)="addMboile()" [disabled]="mobile.length>=3">+</button>
+            <button class="btn btn-outline-warning m-2"
+            (click)="removeMboile()"
+            [disabled]="mobile.length==1">-</button>
+        </div>
+        <input class="btn btn-warning" type="submit" value="Save" [disabled]="profileform.invalid">
+      </form>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div> -->

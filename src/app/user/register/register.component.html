@@ -1,0 +1,77 @@
+<main class="container">
+<div class="d-flex justify-content-center">
+  <form (ngSubmit)="onSubmit()" [formGroup]="regform">
+    <div class="card mt-5" style="width: 38rem;">
+      <div class="card-body">
+        <h5 class="card-title">Register</h5>
+        <div class="card-text">
+            <div class="mb-3">
+                <label for="firstName" class="form-label">First Name</label>
+                <input class="form-control" type="text" id="firstName" formControlName="firstName">
+                <div class="alert alert-danger"
+                  *ngIf="firstName.invalid && (firstName.touched || firstName.dirty)">
+                      <span *ngIf="firstName.errors?.['required']">
+                          Please Enter First  Name
+                      </span>
+                      <span *ngIf="firstName.errors?.['pattern']">
+                          Please Enter Valid First Name
+                      </span>
+                  </div>
+            </div>
+            <div class="mb-3">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input class="form-control" type="text" id="lastName" formControlName="lastName">
+              <div class="alert alert-danger"
+                *ngIf="lastName.invalid && (lastName.touched || lastName.dirty)">
+                    <span *ngIf="lastName.errors?.['required']">
+                        Please Enter Last Name
+                    </span>
+                    <span *ngIf="lastName.errors?.['pattern']">
+                        Please Enter Valid Last Name
+                    </span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <textarea class="form-control" type="text-area" id="address" formControlName="address"></textarea>
+              <div class="alert alert-danger"
+                *ngIf="address.invalid && (address.touched || address.dirty)">
+                    <span *ngIf="address.errors?.['required']">
+                        Please Enter address
+                    </span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input  class="form-control" type="email" id="email" formControlName="email">
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+              <div class="alert alert-danger"
+              *ngIf="email.invalid && (email.touched || email.dirty)">
+                  <span *ngIf="email.errors?.['required']">
+                      Please Enter the Email address
+                  </span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input  class="form-control" type="password" id="password" formControlName="password">
+              <div class="alert alert-danger"
+              *ngIf="password.invalid && (password.touched || password.dirty)">
+                  <span *ngIf="password.errors?.['required']">
+                      Please Enter the Password
+                  </span>
+              </div>
+            </div>
+            <input class="btn btn-outline-success" type="submit" value="Register" [disabled]="regform.invalid">
+            Already registered ? <a [routerLink]="['/user/signin']"> Sign In</a>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</main>
+
+
