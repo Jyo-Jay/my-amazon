@@ -19,10 +19,11 @@ export class ProductDetailsComponent implements OnInit {
   constructor(private activateroute:ActivatedRoute, private productservice:ProductService, private cartservice:CartService) { }
 
   ngOnInit(): void {
-    let id:string=this.activateroute.snapshot.params['id'];
-      this.productservice.getProducts().subscribe({
+    let id:number = eval(this.activateroute.snapshot.paramMap.get("id")!)
+    // ! used to define id is undefine if id is not found in URL
+    this.productservice.getProducts().subscribe({
       next:(list:Product[])=>{
-        this.product = list.find(p=>{return p._id==id})!
+        this.product = list.find(p=>{return p.productId==id})!
       }
     })
   }

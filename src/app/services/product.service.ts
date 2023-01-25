@@ -8,17 +8,24 @@ import { map, Observable } from 'rxjs'
   providedIn: 'root'
 })
 export class ProductService {
-  apiURL="http://localhost:3000"
+  //apiURL="http://localhost:3000"
+  apiURL="http://localhost:4200/assets/product.json"
   //apiURL="/my-amazon/assets/product.json"
+  products$!:Observable<Product[]>
 
   constructor(private http:HttpClient) { }
 
   getProducts(): Observable<Product[]> {
-   return this.http.get<{ data: any[] }>(`${this.apiURL}/products`, {
+    this.products$ = this.http.get<Product[]>(this.apiURL)
+    return this.products$
+  }
+
+  /* return this.http.get<{ data: any[] }>(`${this.apiURL}/products`, {
     }).pipe(
       map(response => {
         return response.data as Product[];
       })
     );
-  }
+  } */
+
 }
